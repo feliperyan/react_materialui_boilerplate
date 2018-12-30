@@ -9,8 +9,9 @@ import { createStore, applyMiddleware } from 'redux'
 import quoteApp from './reducers/index'
 import thunk from 'redux-thunk';
 
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-const store = createStore(quoteApp, applyMiddleware(thunk))
+const store = createStore(quoteApp, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
     <Provider store = {store} >

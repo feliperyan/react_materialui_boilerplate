@@ -9,6 +9,4 @@ const mapStateToProps = state => (
     }
 )
 
-export default connect(
-  mapStateToProps
-)(AuthStatus)
+export default connect(mapStateToProps)(AuthStatus)

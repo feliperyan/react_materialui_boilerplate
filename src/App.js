@@ -6,6 +6,7 @@ import RegForm from './components/container/RegForm'
 import LoginForm from './components/container/LoginForm'
 import AuthContainer from './components/container/AuthContainer'
 import QuoteContainer from './components/container/QuoteContainer'
+import MessageStatus from './components/container/StatusMessageContainer'
 
 class App extends Component {
     render() {
@@ -13,12 +14,12 @@ class App extends Component {
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                </header>                
-                <AuthContainer />
+                </header>
+                <MessageStatus />
                 <QuoteContainer />
+                <AuthContainer />
                 <LoginForm />
-                <RegForm />
-                
+                <RegForm />                
             </div>
         );
     }

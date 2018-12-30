@@ -21,6 +21,16 @@ export const gotToken = data => {
     }
 }
 
+export const updateStatus = data => {
+    console.log('UPDATE_STATUS fired');
+    return {
+        type:'UPDATE_STATUS',
+        payload: {
+            status: data
+        }
+    }
+}
+
 export const userWasRegistered = data => {
     console.log('USER_REGISTERED fired ', data);
     return {
@@ -37,13 +47,19 @@ export const fetchQuote = () => {
     return async(dispatch, getState) => {
         try {            
             let token = getState().userContext.token;
-            //token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOjE2LCJleHAiOjE1NDYwMTA5MzF9.tqgXspj92-Rk1MqYy1NycTmX8I3p2WkwUAFj3x4dmCE';
             let response = await getQuote(token);
             console.log('response from getQuote: ', response);
-            dispatch(gotQuote({quote: response.payload.data}));
+            
+            if (!response.status){
+                dispatch(updateStatus(response.message));    
+            } else {
+                dispatch(gotQuote({quote: response.payload.data}));
+                dispatch(updateStatus("all is well"));
+            }            
         }
         catch (error){
             console.log('Error in fetchQuote: ', error);
+            dispatch(updateStatus("Error fetching, is server up?"));
         }
     }
 }
@@ -54,8 +70,14 @@ export const registerNewUser = (formBody) => {
         try {
             let response = await register(formBody.email, formBody.password);
             console.log('response from register: ', response);
-            dispatch(userWasRegistered(response));
-            dispatch(gotToken(response));
+            if (!response.status){
+                dispatch(updateStatus(response.message));
+            }
+            else {
+                dispatch(userWasRegistered(response));
+                dispatch(gotToken(response));
+                dispatch(updateStatus('new user registered'));
+            }            
         }
         catch (error) {
             console.log('Error in registerNewUser: ', error);
@@ -68,8 +90,15 @@ export const loginUser = (formBody) => {
     return async (dispatch) => {
         try {
             let response = await login(formBody.email, formBody.password);
-            console.log('response from register: ', response);            
-            dispatch(gotToken(response));
+            console.log('response from register: ', response);
+            if (!response.status){
+                dispatch(updateStatus(response.message));    
+            }
+            else {
+                dispatch(gotToken(response));
+                dispatch(updateStatus('user logged in'));
+            }
+            
         }
         catch (error) {
             console.log('Error in registerNewUser: ', error);

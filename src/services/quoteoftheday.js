@@ -32,6 +32,10 @@ export const getQuote = async(token) => {
         });
 
     if(!response.ok ){
+        if (response.status === 403){
+            let data = await response.json();
+            return(data);
+        }
         throw new Error(`Response from fetch not ok: ${response.status}`);
     }
     let data = await response.json();
