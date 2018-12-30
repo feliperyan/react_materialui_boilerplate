@@ -1,14 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {registerNewUser} from '../actions'
+import {registerNewUser} from '../../actions'
+import './MainForm.css';
 
-
-const MainForm = ({dispatch}) => {
+const RegForm = ({dispatch}) => {
     let email
     let password
 
     return (
-        <div>
+        <div className="mainform">
+            <p>Registration Form</p>
             <form onSubmit={e => {
                 e.preventDefault()
                 if (!email.value.trim() || !password.value.trim()) {
@@ -18,12 +19,12 @@ const MainForm = ({dispatch}) => {
                 email.value = ''
                 password.value = ''
             }}>
-                <input ref={node => (email = node)} />
-                <input ref={node => (password = node )} />
-                <button type="submit">Send</button>
+                <p><input ref={node => (email = node)} /></p>
+                <p><input ref={node => (password = node )} /></p>
+                <button type="submit">Register</button>
             </form>
         </div>
     )
 }
 
-export default connect()(MainForm)
+export default connect()(RegForm)
