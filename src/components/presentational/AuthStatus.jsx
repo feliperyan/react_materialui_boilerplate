@@ -1,19 +1,32 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './AuthStatus.css'
 
+import Paper from '@material-ui/core/Paper';
+import { withStyles } from '@material-ui/core/styles';
 
-const AuthStatus = ( {authenticated, token} ) => (
-<div className="mainAuthStatus">
-    <p>    
-      Authenticated: { authenticated? 'Yes' : 'No' }      
-    </p>
-    <p>Token: { token }</p>
-  </div>
-)
-AuthStatus.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
-  token: PropTypes.string.isRequired
+const styles = theme => ({
+    paper: {
+        padding: theme.spacing.unit * 2,
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
+});
+
+const AuthStatus = (props) => {
+    const { classes, authenticated, token } = props;
+    return (
+        <Paper className={classes.paper}>
+            <p>
+                <span style={{fontWeight:"bold"}}>Authenticated:</span> {authenticated ? 'Yes' : 'No'}
+            </p>
+            <p style={{wordBreak:"break-all"}}><span style={{fontWeight:"bold"}}>Token:</span> {token}</p>
+        </Paper>
+    )
 }
 
-export default AuthStatus
+AuthStatus.propTypes = {
+    authenticated: PropTypes.bool.isRequired,
+    token: PropTypes.string.isRequired
+}
+
+export default withStyles(styles)(AuthStatus);

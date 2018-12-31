@@ -8,7 +8,7 @@ const initialState = Immutable(
         is_authenticated: false,
         registration_status: 'not started',
         login_status: 'not started',
-        status: 'awaiting'
+        status: 'awaiting',
     }
 )
 
@@ -25,7 +25,7 @@ const userContext = (state = initialState, action) => {
         case 'UPDATE_STATUS':
             console.log('reducing UPDATE_STATUS action', action);
             return state.merge({status: action.payload.status})
-        
+
         default:
             return state;
     }
