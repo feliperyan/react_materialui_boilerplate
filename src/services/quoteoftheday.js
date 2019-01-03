@@ -1,8 +1,9 @@
-const API_BASE_ENDPOINT = 'http://localhost:8000'
+const API_BASE_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000'
 const API_LOGIN = '/api/user/login'
 const API_REGISTER = '/api/user/new'
 const API_QUOTE = '/api/quote'
 
+console.log(`Sending API requests to: ${API_BASE_ENDPOINT}`);
 
 export const register = async(the_email, the_password) => {
     console.log(`got ${the_email} ${the_password}`);
