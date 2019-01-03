@@ -1,20 +1,19 @@
-const API_BASE_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:8000'
 const API_LOGIN = '/api/user/login'
 const API_REGISTER = '/api/user/new'
 const API_QUOTE = '/api/quote'
 
-console.log(`Sending API requests to: ${API_BASE_ENDPOINT}`);
+console.log(`Sending API requests to: ${process.env.API_URL}`);
 
 export const register = async(the_email, the_password) => {
     console.log(`got ${the_email} ${the_password}`);
-    let response = await postData(`${API_BASE_ENDPOINT}${API_REGISTER}`, {email:the_email, password:the_password});
+    let response = await postData(`${API_REGISTER}`, {email:the_email, password:the_password});
 
     return(response)
 }
 
 export const login = async(the_email, the_password) => {
     console.log(`got ${the_email} ${the_password}`);
-    let response = await postData(`${API_BASE_ENDPOINT}${API_LOGIN}`, {email:the_email, password:the_password});
+    let response = await postData(`${API_LOGIN}`, {email:the_email, password:the_password});
 
     return(response)
 }
@@ -22,10 +21,10 @@ export const login = async(the_email, the_password) => {
 export const getQuote = async(token) => {
     console.log('token: ', token);
     let response = await fetch(
-        `${API_BASE_ENDPOINT}${API_QUOTE}`, 
+        `${API_QUOTE}`, 
         {
             method: 'GET',
-            mode: 'cors',
+            // mode: 'cors',
             credentials: 'include',
             headers: {
                 'Authorization':'Bearer '+token,
