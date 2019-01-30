@@ -1,3 +1,14 @@
+# React Material UI boilerplate to consume a simple API
+
+### To be used with https://github.com/feliperyan/golang_api_boilerplate
+
+### Must specify:
+
+1. The `create-react-app-buildpack` found at https://github.com/mars/create-react-app-buildpack
+2. A config var pointing to the API server, named `API_URL` of the format: `https://myapp.herokuapp.com/api/`
+
+--- 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
