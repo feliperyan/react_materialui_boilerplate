@@ -1,0 +1,29 @@
+{
+    "name": "React Material UI Boilerplate API Consumer",
+    "description": "Consumes an API",
+    "repository": "https://github.com/jane-doe/small-sharp-tool",
+    "env": {
+      "API_URL": {
+        "description": "The url to consume an api from",
+        "value": "https://myapphere.herokuapp.com/api/"
+      }
+    },
+    "formation": {
+      "web": {
+        "quantity": 1,
+        "size": "Standard-1x"
+      }
+    },
+    "buildpacks": [
+      {
+        "url": "https://github.com/mars/create-react-app-buildpack"
+      }
+    ],
+    "environments": {
+      "test": {
+        "scripts": {
+          "test": "bin/test"
+        }
+      }
+    }
+  }
