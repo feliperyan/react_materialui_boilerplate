@@ -18,12 +18,5 @@
       {
         "url": "https://github.com/mars/create-react-app-buildpack"
       }
-    ],
-    "environments": {
-      "test": {
-        "scripts": {
-          "test": "bin/test"
-        }
-      }
-    }
+    ]
   }
