@@ -31,7 +31,7 @@ function MyAppBar(props) {
             <MenuIcon />            
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.grow}>
-            Hello Finland
+            Einstein Quotes API Client
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>
