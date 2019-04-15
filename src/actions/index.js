@@ -16,7 +16,7 @@ export const gotToken = data => {
     return {
         type: 'GOT_TOKEN',
         payload: {
-            token: data.userAccount.Token
+            token: data.userAccount.token
         }
     }
 }
